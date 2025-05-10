@@ -1,5 +1,6 @@
 import pygame
 import sys
+import os
 
 # Inicijalizacija
 pygame.init()
@@ -17,8 +18,17 @@ white = (255, 255, 255)
 
 # Font
 # Treba se odluchiti za font moj trenutni predlog (Aurora by StorytypeStudio ili neki drugi to cemo i Marka da pitamo)
-font = pygame.font.Font(None, 74)
-small_font = pygame.font.Font(None, 36)
+current_dir = os.path.dirname(__file__)
+font_path = os.path.join(current_dir, 'Assets', 'Fonts', 'deutsch_gothic', 'Deutsch.ttf')
+
+try:
+    font = pygame.font.Font(font_path, 74)
+    small_font = pygame.font.Font(font_path, 36)
+except pygame.error as e:
+    print(f"Error loading font: {e}")
+    # Fallback to default font
+    font = pygame.font.Font(None, 74)
+    small_font = pygame.font.Font(None, 36)
 
 
 # Glavni izbornik funkcije
